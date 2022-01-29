@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    restart: unless-stopped
+    environment: 
+      - TZ=America/New_York
+    dns: 
+      - 192.168.1.1
+      - 127.0.0.1
+    volumes:
+      - "/home/fabio/Docker/HomeAssistant/config:/config"
+    privileged: true
+    network_mode: "host"
+    cap_add:
+      - NET_ADMIN
+
+  homebridge:
+    image: oznu/homebridge:latest
+    container_name: homebridge
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - TZ=Australia/Sydney
+      - PGID=1000
+      - PUID=1000
+      - HOMEBRIDGE_CONFIG_UI=1
+      - HOMEBRIDGE_CONFIG_UI_PORT=8581
+    volumes:
+      - "/home/fabio/Docker/HomeBridge:/homebridge"
+    dns:
+      - 192.168.1.1
+      - 127.0.0.1
+      
