@@ -15,7 +15,6 @@ The following assumptions are made ... because this is how I run it at home :-)
 You should modify the docker-compose.yaml and replace the following if your network has different IP addresses:
 
 - Replace 192.168.1.1 with your router's LAN IP address
-- Replace 192.168.1.4 with your server's IP address
 
 ## Pre-Requisites
 
