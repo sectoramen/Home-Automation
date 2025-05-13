@@ -1,57 +1,86 @@
+exclude: '^\\.'
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
-    hooks:
-    -   id: trailing-whitespace
-    -   id: end-of-file-fixer
-    -   id: check-yaml
-    -   id: debug-statements
-    -   id: double-quote-string-fixer
-    -   id: name-tests-test
-    -   id: requirements-txt-fixer
-    -   id: detect-private-key
--   repo: https://github.com/asottile/setup-cfg-fmt
-    rev: v2.7.0
-    hooks:
-    -   id: setup-cfg-fmt
--   repo: https://github.com/asottile/reorder-python-imports
-    rev: v3.14.0
-    hooks:
-    -   id: reorder-python-imports
-        exclude: ^(pre_commit/resources/|testing/resources/python3_hooks_repo/)
-        args: [--py39-plus, --add-import, 'from __future__ import annotations']
--   repo: https://github.com/asottile/add-trailing-comma
-    rev: v3.1.0
-    hooks:
-    -   id: add-trailing-comma
--   repo: https://github.com/asottile/pyupgrade
-    rev: v3.19.1
-    hooks:
-    -   id: pyupgrade
-        args: [--py39-plus]
--   repo: https://github.com/hhatto/autopep8
-    rev: v2.3.2
-    hooks:
-    -   id: autopep8
--   repo: https://github.com/PyCQA/flake8
-    rev: 7.1.2
-    hooks:
-    -   id: flake8
--   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.15.0
-    hooks:
-    -   id: mypy
-        additional_dependencies: [types-pyyaml]
-        exclude: ^testing/resources/
--   repo: https://github.com/gitleaks/gitleaks
-    rev: v8.24.0
-    hooks:
-        - id: gitleaks
--   repo: https://github.com/returntocorp/semgrep
-    rev: v1.111.0
-    hooks:
-        - id: semgrep
--   repo: https://github.com/pycqa/isort
-    rev: 6.0.1
-    hooks:
-        - id: isort
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v5.0.0
+  hooks:
+  - id: check-added-large-files
+  - id: check-yaml
+  - id: debug-statements
+  - id: detect-private-key
+  - id: end-of-file-fixer
+  - id: name-tests-test
+  - id: no-commit-to-branch
+  - id: requirements-txt-fixer
+  - id: trailing-whitespace
+
+- repo: https://github.com/psf/black
+  rev: 25.1.0
+  hooks:
+  - id: black
+- repo: https://github.com/Yelp/detect-secrets
+  rev: v1.5.0
+  hooks:
+  - id: detect-secrets
+- repo: https://github.com/PyCQA/bandit
+  rev: 1.8.3
+  hooks:
+  - id: bandit
+    args: [-r]
+- repo: https://github.com/aws-cloudformation/cfn-lint
+  rev: v1.35.1
+  hooks:
+  - id: cfn-lint
+    exclude: (docker-compose.yaml|.pre-commit-config.yaml)
+- repo: https://github.com/bridgecrewio/checkov
+  rev: 3.2.417
+  hooks:
+  - id: checkov
+# - repo: https://github.com/ubersan/pylic
+#   rev: v4.0.0
+#   hooks:
+#   - id: pylic
+#     files: ADD-PYTHON-LICENSE-FILE
+- repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+  rev: v1.4.2
+  hooks:
+  - id: python-safety-dependencies-check
+- repo: https://github.com/asottile/setup-cfg-fmt
+  rev: v2.8.0
+  hooks:
+  - id: setup-cfg-fmt
+- repo: https://github.com/asottile/reorder-python-imports
+  rev: v3.14.0
+  hooks:
+  - id: reorder-python-imports
+- repo: https://github.com/asottile/add-trailing-comma
+  rev: v3.1.0
+  hooks:
+  - id: add-trailing-comma
+- repo: https://github.com/asottile/pyupgrade
+  rev: v3.19.1
+  hooks:
+  - id: pyupgrade
+- repo: https://github.com/hhatto/autopep8
+  rev: v2.3.2
+  hooks:
+  - id: autopep8
+- repo: https://github.com/PyCQA/flake8
+  rev: 7.2.0
+  hooks:
+  - id: flake8
+- repo: https://github.com/pre-commit/mirrors-mypy
+  rev: v1.15.0
+  hooks:
+  - id: mypy
+- repo: https://github.com/gitleaks/gitleaks
+  rev: v8.26.0
+  hooks:
+  - id: gitleaks
+- repo: https://github.com/returntocorp/semgrep
+  rev: v1.89.0
+  hooks:
+  - id: semgrep
+- repo: https://github.com/pycqa/isort
+  rev: 6.0.1
+  hooks:
+  - id: isort

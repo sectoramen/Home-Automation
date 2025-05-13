@@ -4,9 +4,9 @@ services:
     container_name: homeassistant
     image: ghcr.io/home-assistant/home-assistant:stable
     restart: unless-stopped
-    environment: 
+    environment:
       - TZ=America/New_York
-    dns: 
+    dns:
       - 192.168.1.1
       - 127.0.0.1
     volumes:
@@ -32,4 +32,3 @@ services:
     dns:
       - 192.168.1.1
       - 127.0.0.1
-      
